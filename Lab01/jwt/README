@@ -1,0 +1,35 @@
+
+---
+
+### 🔹 Login
+
+```bash
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"username":"admin","password":"123456"}'
+```
+
+---
+
+### 🔹 Gọi API cần access token
+
+```bash
+curl http://localhost:3000/profile -H "Authorization: Bearer ACCESS_TOKEN"
+```
+
+---
+
+### 🔹 Refresh access token
+
+```bash
+curl -X POST http://localhost:3000/refresh-token -H "Content-Type: application/json" -d '{"refreshToken":"REFRESH_TOKEN"}'
+```
+
+---
+
+### 🔹 Logout
+
+```bash
+curl -X POST http://localhost:3000/logout -H "Content-Type: application/json" -d '{"refreshToken":"REFRESH_TOKEN"}'
+```
+
+'{"username":"admin","password":"123456"}'
+{"user":{"id":1,"username":"admin","role":"admin"},"accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2ODU0NTY0NiwiZXhwIjoxNzY4NTQ2NTQ2fQ.JBI_ybywfGh_ojChtXuggHvLjfLIDpRKHrdsMrxkMpw","refreshToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJhZG1pbiIsImlhdCI6MTc2ODU0NTY0NywiZXhwIjoxNzY5MTUwNDQ3fQ.mtKtHpEcDKjc-Sp2nrDzl-IgmJYC0er9gb7mBH1Im6U"}
