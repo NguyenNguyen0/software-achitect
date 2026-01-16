@@ -1,0 +1,12 @@
+Đặt hàng xong gửi Email/SMS xác nhận (Background job)
+Bài toán thực tế
+User bấm “Đặt hàng/Đặt vé”. Hệ thống cần:
+- Tạo đơn hàng ngay
+- Gửi email xác nhận (có thể chậm vài giây)
+Nếu KHÔNG dùng MQ
+Order API phải “đợi” gửi email xong mới trả kết quả → chậm, dễ timeout, email lỗi làm đơn fail theo.
+Dùng MQ thì làm gì?
+Order Service chỉ làm phần quan trọng và nhanh:
+ghi DB tạo đơn
+đẩy job vào queue: SendEmailJob(orderId, email)
+Email Worker lấy job ra và gửi email ở nền.

@@ -1,0 +1,10 @@
+Flash Sale / Mở bán vé cao điểm (Queue làm “bộ đệm” chống sập)
+Bài toán thực tế
+Trong 1 phút có 10.000 người đặt vé/đặt hàng.
+ DB và service xử lý chỉ chịu được ~2.000 request/phút.
+Nếu KHÔNG dùng MQ
+DB quá tải → timeout, rớt request
+
+Web/app “sập” hoặc trả lỗi hàng loạt
+
+Dễ oversell (bán quá số lượng)
