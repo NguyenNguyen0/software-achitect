@@ -11,3 +11,9 @@
 ``` bash
     Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
+
+
+``` bash
+    https://docs.google.com/spreadsheets/d/1Q5ZIJnshPmsqgFQFAO_P8aK2SEM6qrZU460HvLtIjm0/edit?usp=sharing
+```
+
