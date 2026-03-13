@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CMS Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/app.css" />
+  <style>
+    /* Placeholder styling for contenteditable */
+    [contenteditable]:empty:before {
+      content: attr(data-placeholder);
+      color: var(--text-3);
+      pointer-events: none;
+    }
+
+    /* Smooth page transitions */
+    .main-content {
+      animation: fadeInUp 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    /* Connection error banner */
+    #connection-error {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(248,113,113,0.95);
+      color: white;
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      z-index: 99999;
+      display: none;
+    }
+
+    /* Stagger sidebar nav items on load */
+    .nav-item {
+      animation: fadeInLeft 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .nav-item:nth-child(1) { animation-delay: 0.05s; }
+    .nav-item:nth-child(2) { animation-delay: 0.10s; }
+    .nav-item:nth-child(3) { animation-delay: 0.15s; }
+    .nav-item:nth-child(4) { animation-delay: 0.20s; }
+    .nav-item:nth-child(5) { animation-delay: 0.25s; }
+
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    /* Stat card stagger */
+    .stat-card:nth-child(1) { animation: fadeInUp 0.3s 0.05s var(--ease-out-expo) both; }
+    .stat-card:nth-child(2) { animation: fadeInUp 0.3s 0.10s var(--ease-out-expo) both; }
+    .stat-card:nth-child(3) { animation: fadeInUp 0.3s 0.15s var(--ease-out-expo) both; }
+    .stat-card:nth-child(4) { animation: fadeInUp 0.3s 0.20s var(--ease-out-expo) both; }
+
+    /* Login page animation */
+    .login-brand { animation: fadeInUp 0.5s 0.1s var(--ease-out-expo) both; }
+    .login-form-wrap { animation: fadeInUp 0.5s 0.2s var(--ease-out-expo) both; }
+
+    /* Table row hover highlight left border */
+    tbody tr { position: relative; }
+    tbody tr::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 2px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+    tbody tr:hover::after { opacity: 1; }
+  </style>
+</head>
+<body>
+
+  <!-- Connection error -->
+  <div id="connection-error">
+    ⚠ Cannot connect to CMS API at localhost:3000 — make sure the backend is running
+  </div>
+
+  <!-- App mount -->
+  <div id="app">
+    <div style="min-height:100vh;display:flex;align-items:center;justify-content:center">
+      <div style="text-align:center">
+        <div style="width:48px;height:48px;border:3px solid rgba(255,255,255,0.1);border-top-color:#5EEAD4;border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 16px"></div>
+        <div style="font-family:'DM Mono',monospace;font-size:13px;color:#5B6480">Initialising CMS Studio…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts — order matters -->
+  <script src="js/api.js"></script>
+  <script src="js/router.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/layout.js"></script>
+
+  <!-- Pages -->
+  <script src="js/page-login.js"></script>
+  <script src="js/page-dashboard.js"></script>
+  <script src="js/page-content.js"></script>
+  <script src="js/page-editor.js"></script>
+  <script src="js/page-misc.js"></script>
+
+  <!-- Boot -->
+  <script>
+    // Test backend connectivity
+    (async () => {
+      try {
+        await fetch('http://localhost:3000/api/health');
+      } catch {
+        document.getElementById('connection-error').style.display = 'block';
+      }
+    })();
+
+    // Start router
+    handleRoute();
+  </script>
+</body>
+</html>
