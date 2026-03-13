@@ -1,0 +1,7 @@
+2026-03-13 14:33:11 [[31merror[39m]: [Server] Uncaught Exception: Error: listen EADDRINUSE: address already in use :::3000
+    at Server.setupListenHandle [as _listen2] (node:net:1940:16)
+    at listenInCluster (node:net:1997:12)
+    at Server.listen (node:net:2102:7)
+    at Function.listen (T:\cms-system\cms\node_modules\express\lib\application.js:635:24)
+    at bootstrap (T:\cms-system\cms\server.js:16:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)

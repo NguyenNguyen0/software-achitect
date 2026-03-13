@@ -934,3 +934,54 @@ tbody tr:hover { background: rgba(255,255,255,0.02); }
   color: var(--red);
   margin-bottom: 16px;
 }
+
+/* ── Preview / View body prose styles ───────────────────────────────────── */
+.preview-body h1, .preview-body h2, .preview-body h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text-1);
+  margin: 28px 0 10px;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+.preview-body h1 { font-size: 28px; }
+.preview-body h2 { font-size: 22px; }
+.preview-body h3 { font-size: 18px; }
+.preview-body p  { margin: 0 0 16px; }
+.preview-body ul, .preview-body ol {
+  margin: 0 0 16px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.preview-body li { color: var(--text-2); }
+.preview-body code {
+  font-family: var(--font-mono);
+  background: var(--bg-4);
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-size: 13px;
+  color: var(--accent);
+}
+.preview-body pre {
+  background: var(--bg-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent);
+  line-height: 1.6;
+}
+.preview-body blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 18px;
+  color: var(--text-2);
+  font-style: italic;
+  margin: 16px 0;
+}
+.preview-body a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.preview-body strong, .preview-body b { color: var(--text-1); font-weight: 600; }
+.preview-body hr { border: none; border-top: 1px solid var(--border); margin: 24px 0; }

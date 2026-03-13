@@ -18,7 +18,24 @@ async function navigate(hash) {
 async function handleRoute() {
   const raw = window.location.hash.slice(1) || '/';
   // Extract base path and params
-  const [path, ...rest] = raw.split('?');
+  // Support /view/some-slug style routes — match registered prefix
+  const [withoutQuery, ...queryParts] = raw.split('?');
+  const segments = withoutQuery.split('/').filter(Boolean);
+
+  // Check for prefix routes like /view/:slug → registered as /view
+  let path = withoutQuery;
+  let params = Object.fromEntries(new URLSearchParams(queryParts.join('?')));
+
+  if (segments.length >= 2) {
+    const prefix = '/' + segments[0];
+    if (routes[prefix]) {
+      path = prefix;
+      params = { ...params, slug: segments.slice(1).join('/') };
+    }
+  }
+
+  const [_path, ...rest] = raw.split('?');
+  void _path; void rest; // legacy compat
 
   // Auth guard
   if (path !== '/login' && !state.token) {
@@ -42,7 +59,7 @@ async function handleRoute() {
 
   const handler = routes[path];
   if (handler) {
-    await handler(Object.fromEntries(new URLSearchParams(rest.join('?'))));
+    await handler(params);
   } else {
     navigate('/dashboard');
   }

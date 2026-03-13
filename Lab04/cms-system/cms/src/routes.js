@@ -24,7 +24,8 @@ router.delete('/users/:id',   authenticate, authorize('admin'), userCtrl.remove.
 
 // ─── Content (public reads, auth writes) ──────────────────────────────────────
 router.get('/content',               contentCtrl.list.bind(contentCtrl));
-router.get('/content/slug/:slug',    contentCtrl.findBySlug.bind(contentCtrl));
+router.get('/content/slug/:slug',         contentCtrl.findBySlug.bind(contentCtrl));
+router.get('/content/preview/:slug',      authenticate, contentCtrl.previewBySlug.bind(contentCtrl));
 router.get('/content/:id',           contentCtrl.findById.bind(contentCtrl));
 
 router.post('/content',              authenticate, authorize('author', 'editor', 'admin'), contentCtrl.create.bind(contentCtrl));

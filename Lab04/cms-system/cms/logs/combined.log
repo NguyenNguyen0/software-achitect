@@ -1,0 +1,35 @@
+2026-03-13 14:33:11 [[32minfo[39m]: [Database] Connected to MongoDB: mongodb://localhost:27017/cms_db
+2026-03-13 14:33:25 [[32minfo[39m]: [Database] Connected to MongoDB: mongodb://localhost:27017/cms_db
+2026-03-13 14:33:25 [[32minfo[39m]: [SEO Plugin] Registered: auto meta-generation active
+2026-03-13 14:33:25 [[32minfo[39m]: [PluginManager] Plugin "seo@1.0.0" loaded
+2026-03-13 14:33:25 [[32minfo[39m]: [Search Plugin] Registered: full-text search active
+2026-03-13 14:33:25 [[32minfo[39m]: [PluginManager] Plugin "search@1.0.0" loaded
+2026-03-13 14:33:25 [[32minfo[39m]: 
+🚀 CMS Server running
+2026-03-13 14:33:25 [[32minfo[39m]:    → http://localhost:3000/api
+2026-03-13 14:33:25 [[32minfo[39m]:    → ENV: development
+2026-03-13 14:33:39 [[32mhttp[39m]: [0mGET /api/health [32m200[0m 5.210 ms - 67[0m
+2026-03-13 14:33:42 [[32mhttp[39m]: [0mPOST /api/auth/login [32m200[0m 342.951 ms - 486[0m
+2026-03-13 14:33:42 [[32mhttp[39m]: [0mGET /api/plugins [32m200[0m 0.611 ms - 152[0m
+2026-03-13 14:33:42 [[32mhttp[39m]: [0mGET /api/content?status=draft&limit=5 [36m304[0m 13.205 ms - -[0m
+2026-03-13 14:33:42 [[32mhttp[39m]: [0mGET /api/content?limit=5 [36m304[0m 27.101 ms - -[0m
+2026-03-13 14:33:42 [[32mhttp[39m]: [0mGET /api/content?status=published&limit=5 [36m304[0m 32.788 ms - -[0m
+2026-03-13 14:33:43 [[32mhttp[39m]: [0mGET /api/content/69b3b79913a795fd2c0ad09d [36m304[0m 6.295 ms - -[0m
+2026-03-13 14:33:51 [[32mhttp[39m]: [0mGET /api/content?page=1&limit=15 [36m304[0m 5.404 ms - -[0m
+2026-03-13 14:33:54 [[32mhttp[39m]: [0mGET /api/content/slug/draft-advanced-mongodb-aggregations [32m200[0m 25.495 ms - 1072[0m
+2026-03-13 14:33:59 [[32mhttp[39m]: [0mGET /api/content?page=1&limit=15 [36m304[0m 0.683 ms - -[0m
+2026-03-13 14:34:00 [[32mhttp[39m]: [0mGET /api/content/slug/getting-started-with-nodejs-cms [32m200[0m 4.287 ms - 1215[0m
+2026-03-13 14:34:05 [[32mhttp[39m]: [0mGET /api/content?page=1&limit=15 [36m304[0m 0.697 ms - -[0m
+2026-03-13 14:34:06 [[32mhttp[39m]: [0mGET /api/content/69b3b79913a795fd2c0ad09b [32m200[0m 4.880 ms - 1215[0m
+2026-03-13 14:34:14 [[32mhttp[39m]: [0mPATCH /api/content/69b3b79913a795fd2c0ad09b [32m200[0m 12.378 ms - 1217[0m
+2026-03-13 14:34:14 [[34mdebug[39m]: [SEO Plugin] Meta generated for content: 69b3b79913a795fd2c0ad09b
+2026-03-13 14:34:19 [[32mhttp[39m]: [0mGET /api/content?page=1&limit=15 [32m200[0m 6.792 ms - 2305[0m
+2026-03-13 14:34:22 [[32mhttp[39m]: [0mGET /api/content/slug/getting-started-with-nodejs-cms [32m200[0m 4.436 ms - 1231[0m
+2026-03-13 14:34:34 [[32mhttp[39m]: [0mGET /api/plugins [36m304[0m 0.682 ms - -[0m
+2026-03-13 14:34:40 [[32mhttp[39m]: [0mGET /api/search?q=ski [32m200[0m 2.751 ms - 70[0m
+2026-03-13 14:34:42 [[32mhttp[39m]: [0mGET /api/search?q=skibidi [32m200[0m 4.033 ms - 512[0m
+2026-03-13 14:34:45 [[32mhttp[39m]: [0mGET /api/content/69b3b79913a795fd2c0ad09b [32m200[0m 5.105 ms - 1231[0m
+2026-03-13 14:34:48 [[32mhttp[39m]: [0mGET /api/plugins [36m304[0m 0.291 ms - -[0m
+2026-03-13 14:34:56 [[32mhttp[39m]: [0mGET /api/content?page=1&limit=15 [36m304[0m 0.717 ms - -[0m
+2026-03-13 14:35:45 [[32minfo[39m]: 
+[Server] Received SIGINT, shutting down gracefully...

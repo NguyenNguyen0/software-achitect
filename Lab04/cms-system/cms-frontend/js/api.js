@@ -43,6 +43,7 @@ const api = {
   publishContent:(id)          => api.post(`/content/${id}/publish`, {}),
   deleteContent: (id)          => api.delete(`/content/${id}`),
   searchContent: (q)           => api.get(`/search?q=${encodeURIComponent(q)}`),
+  previewBySlug: (slug)        => api.get(`/content/preview/${slug}`),
 
   // Users
   listUsers: () => api.get('/users'),

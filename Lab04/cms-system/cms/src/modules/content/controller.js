@@ -48,6 +48,13 @@ class ContentController {
     } catch (err) { next(err); }
   }
 
+  async previewBySlug(req, res, next) {
+    try {
+      const content = await contentService.previewBySlug(req.params.slug);
+      res.json({ success: true, data: content });
+    } catch (err) { next(err); }
+  }
+
   async update(req, res, next) {
     try {
       const content = await contentService.update(req.params.id, req.body, req.user.sub);

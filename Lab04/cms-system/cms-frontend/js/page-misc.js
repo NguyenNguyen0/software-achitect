@@ -236,3 +236,115 @@ route('/plugins', async () => {
     document.getElementById('main-content').innerHTML = `<div class="error-banner">${err.message}</div>`;
   }
 });
+
+// ── Public View page — /view/:slug ────────────────────────────────────────
+route('/view', async (params) => {
+  const slug = params.slug || window.location.hash.split('/view/')[1];
+  if (!slug) return navigate('/content');
+
+  renderShell('content', 'View', `<div class="empty-state"><div class="loading-spinner" style="margin:0 auto"></div></div>`);
+
+  try {
+    const res = await api.get(`/content/slug/${slug}`);
+    const c = res.data;
+
+    document.getElementById('main-content').innerHTML = `
+      <div style="max-width:760px;margin:0 auto">
+
+        <!-- Back + actions bar -->
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:28px">
+          <button class="btn btn-secondary btn-sm" onclick="navigate('/content')">← Back</button>
+          <div style="flex:1"></div>
+          ${['admin','editor','author'].includes(state.user?.role) ? `
+            <button class="btn btn-secondary btn-sm" onclick="navigate('/editor?id=${c._id}')">Edit</button>
+          ` : ''}
+          <div style="display:flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;color:var(--text-3)">
+            <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block"></span>
+            ${c.viewCount} views
+          </div>
+        </div>
+
+        <!-- Article -->
+        <article style="
+          background:var(--bg-2);border:1px solid var(--border);
+          border-radius:12px;overflow:hidden;
+        ">
+          <div style="padding:48px 56px 60px">
+
+            <!-- Meta -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;flex-wrap:wrap">
+              <span class="badge badge--blue">${c.type}</span>
+              ${(c.tags || []).map(t => `<span class="badge badge--gray">${t}</span>`).join('')}
+            </div>
+
+            <!-- Title -->
+            <h1 style="
+              font-family:var(--font-display);font-size:38px;font-weight:800;
+              letter-spacing:-1px;line-height:1.15;color:var(--text-1);margin-bottom:18px;
+            ">${c.title}</h1>
+
+            <!-- Byline -->
+            <div style="
+              display:flex;align-items:center;gap:12px;padding-bottom:24px;
+              border-bottom:1px solid var(--border);margin-bottom:28px;
+            ">
+              <div style="
+                width:34px;height:34px;border-radius:8px;
+                background:linear-gradient(135deg,var(--accent),var(--accent-3));
+                display:flex;align-items:center;justify-content:center;
+                font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--bg);
+              ">${(c.author?.name || 'A').charAt(0).toUpperCase()}</div>
+              <div>
+                <div style="font-weight:500;font-size:14px;color:var(--text-1)">${c.author?.name || 'Unknown'}</div>
+                <div style="font-size:12px;color:var(--text-3);font-family:var(--font-mono)">
+                  Published ${formatDate(c.publishedAt || c.createdAt)}
+                </div>
+              </div>
+            </div>
+
+            <!-- Excerpt -->
+            ${c.excerpt ? `
+              <p style="
+                font-size:18px;color:var(--text-2);line-height:1.7;
+                border-left:3px solid var(--accent);padding-left:18px;
+                margin-bottom:30px;font-style:italic;
+              ">${c.excerpt}</p>
+            ` : ''}
+
+            <!-- Body -->
+            <div style="font-size:16px;line-height:1.9;color:var(--text-2)" class="preview-body">
+              ${c.body}
+            </div>
+          </div>
+
+          <!-- Footer meta -->
+          <div style="
+            padding:16px 56px;background:var(--bg-3);
+            border-top:1px solid var(--border);
+            display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+          ">
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3)">
+              /slug/${c.slug}
+            </div>
+            ${c.seo?.keywords?.length ? `
+              <div style="display:flex;gap:5px;flex-wrap:wrap">
+                ${c.seo.keywords.slice(0,5).map(k => `<span class="badge badge--blue">${k}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        </article>
+      </div>
+    `;
+  } catch (err) {
+    document.getElementById('main-content').innerHTML = `
+      <div style="max-width:500px;margin:0 auto">
+        <div class="error-banner">
+          ${err.status === 404
+            ? 'This content is not publicly accessible. It may be a draft — use <strong>Preview</strong> from the Content list instead.'
+            : err.message}
+        </div>
+        <button class="btn btn-secondary" style="margin-top:12px" onclick="navigate('/content')">← Back to Content</button>
+      </div>
+    `;
+  }
+});

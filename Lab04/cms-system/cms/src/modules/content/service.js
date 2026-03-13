@@ -66,6 +66,14 @@ class ContentService {
     return content;
   }
 
+  // Preview: any status, requires auth — used by CMS admin
+  async previewBySlug(slug) {
+    const content = await Content.findOne({ slug })
+      .populate('author', 'name email avatar');
+    if (!content) throw Object.assign(new Error('Content not found'), { statusCode: 404 });
+    return content;
+  }
+
   async update(id, data, userId) {
     const content = await Content.findById(id);
     if (!content) throw Object.assign(new Error('Content not found'), { statusCode: 404 });
