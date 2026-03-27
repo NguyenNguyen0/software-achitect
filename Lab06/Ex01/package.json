@@ -1,0 +1,22 @@
+{
+  "name": "software-achitect",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NguyenNguyen0/software-achitect.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NguyenNguyen0/software-achitect/issues"
+  },
+  "homepage": "https://github.com/NguyenNguyen0/software-achitect#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
